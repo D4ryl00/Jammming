@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchBarComponent({ input, setInput }) {
+function SearchBarComponent({ input, onChangeInput, onKeyDown }) {
   return (
     <>
       <input
@@ -9,7 +9,8 @@ function SearchBarComponent({ input, setInput }) {
         type="text"
         placeholder="Search"
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={onChangeInput}
+        onKeyDown={onKeyDown}
       />
     </>
   );

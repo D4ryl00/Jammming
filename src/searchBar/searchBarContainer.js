@@ -2,9 +2,26 @@ import React, { useState } from "react";
 
 import SearchBarComponent from "./searchBarComponent";
 
-function SearchBarContainer() {
+function SearchBarContainer({ onValidate }) {
   const [input, setInput] = useState("");
-  return <SearchBarComponent input={input} setInput={setInput} />;
+
+  const changeHandler = ({ target }) => {
+    setInput(target.value);
+  };
+
+  const keyDownHandler = (e) => {
+    if (e.key === "Enter") {
+      onValidate(input);
+    }
+  };
+
+  return (
+    <SearchBarComponent
+      input={input}
+      onChangeInput={changeHandler}
+      onKeyDown={keyDownHandler}
+    />
+  );
 }
 
 export default SearchBarContainer;
