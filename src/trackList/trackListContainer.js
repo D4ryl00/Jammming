@@ -2,15 +2,17 @@ import React from "react";
 
 import TrackListComponent from "./trackListComponent";
 
-function TrackListContainer({ jsonResults }) {
-  if (jsonResults === "") {
+function TrackListContainer({ tracks, addHandler }) {
+  if (tracks.length === 0) {
     return "no results";
   }
 
-  console.log("remi: JsonTracks:" + jsonResults);
-  const results = JSON.parse(jsonResults);
-  console.log("remi: tracks:" + JSON.stringify(results.tracks));
-  return <TrackListComponent tracks={results.tracks} />;
+  const clickHandler = (track) => {
+    addHandler(track);
+  };
+
+  console.log("remi: JsonTracks:" + tracks);
+  return <TrackListComponent tracks={tracks} onClick={clickHandler} />;
 }
 
 export default TrackListContainer;

@@ -1,18 +1,27 @@
 import React from "react";
 
-function TrackListComponent({ tracks }) {
+function TrackListComponent({ tracks, onClick }) {
   return (
     <div>
-      <h1>Track List</h1>
-      <ul>
-        {tracks.map((track) => (
-          <li key={track.id}>
-            {track.title}
-            {track.artist}
-            {track.album}
-          </li>
-        ))}
-      </ul>
+      <table>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Album</th>
+          </tr>
+          {tracks.map((track) => (
+            <tr key={track.id}>
+              <td>{track.name}</td>
+              <td>{track.artist}</td>
+              <td>{track.album}</td>
+              <td>
+                <button onClick={(e) => onClick(track)}>+</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

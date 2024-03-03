@@ -12,8 +12,27 @@ const spotify = {
     return this.data;
   },
 
-  extractTracks(data) {
-    return '{"tracks": [{"id": "id1", "title": "title1", "artist": "artist1", "album": "album1"}]}';
+  factoryTrack(id, name, artist, album) {
+    return { id, name, artist, album };
+  },
+
+  extractTracks(jsonData) {
+    let tracks = [];
+
+    const data = JSON.parse(jsonData);
+
+    for (const item of data.tracks.items) {
+      const track = this.factoryTrack(
+        item.id,
+        item.name,
+        item.artists.length > 0 ? item.artists[0].name : "unknown",
+        item.album.name,
+      );
+      tracks.push(track);
+    }
+
+    // return '{"tracks": [{"id": "id1", "title": "title1", "artist": "artist1", "album": "album1"}]}';
+    return tracks;
   },
 };
 
