@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import "./App.css";
-import SearchBarContainer from "./searchBar/searchBarContainer";
+import SearchBar from "./searchBar/searchBar";
 import spotify from "./spotifyMock";
-import TrackListContainer from "./trackList/trackListContainer";
-import PlaylistContainer from "./playlist/playlistContainer";
+import TrackList from "./trackList/trackList";
+import Playlist from "./playlist/playlist";
 
 function App() {
   const [tracks, setTracks] = useState([]);
@@ -21,14 +21,25 @@ function App() {
   };
 
   const addHandler = (track) => {
+    if (playlist.find((currentTrack) => currentTrack.id === track.id)) {
+      return;
+    }
     setPlaylist((playlist) => [...playlist, track]);
+  };
+
+  const removeHandler = (track) => {
+    setPlaylist((playlist) => {
+      return playlist.filter((currentTrack) => {
+        return currentTrack.id !== track.id;
+      });
+    });
   };
 
   return (
     <div className="App">
-      <SearchBarContainer onValidate={validateHandler} />
-      <TrackListContainer tracks={tracks} addHandler={addHandler} />
-      <PlaylistContainer playlist={playlist} />
+      <SearchBar onValidate={validateHandler} />
+      <TrackList tracks={tracks} addHandler={addHandler} />
+      <Playlist playlist={playlist} removeHandler={removeHandler} />
     </div>
   );
 }

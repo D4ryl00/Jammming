@@ -1,14 +1,20 @@
 import React from "react";
 
-function PlaylistComponent({ playlist }) {
+import Track from "../track/track";
+
+function PlaylistComponent({ playlist, onRemove }) {
   return (
-    <div>
-      <h2>Playlist</h2>
-      <ul>
-        {playlist.map((track) => (
-          <li key={track.id}>{track.name}</li>
-        ))}
-      </ul>
+    <div className="playlist">
+      <h1>Results</h1>
+      {playlist.map((track) => (
+        <Track
+          key={track.id}
+          track={track}
+          toAdd={false}
+          onAdd={() => {}}
+          onRemove={onRemove}
+        />
+      ))}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import SearchBarComponent from "./searchBarComponent";
 
-function SearchBarContainer({ onValidate }) {
+function SearchBar({ onValidate }) {
   const [input, setInput] = useState("");
 
   const changeHandler = ({ target }) => {
@@ -24,4 +24,4 @@ function SearchBarContainer({ onValidate }) {
   );
 }
 
-export default SearchBarContainer;
+export default SearchBar;
