@@ -2,10 +2,14 @@ import React from "react";
 
 import Track from "../track/track";
 
-function PlaylistComponent({ playlist, onRemove }) {
+function PlaylistComponent({ playlist, onRemove, title, onChangeTitle }) {
+  const handleTitleChange = (event) => {
+    onChangeTitle(event.target.value);
+  };
+
   return (
     <div className="playlist">
-      <h1>Results</h1>
+      <input onChange={handleTitleChange} defaultValue={title} />
       {playlist.map((track) => (
         <Track
           key={track.id}

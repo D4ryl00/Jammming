@@ -7,6 +7,7 @@ import TrackList from "./trackList/trackList";
 import Playlist from "./playlist/playlist";
 
 function App() {
+  const [title, setTitle] = useState("My playlist");
   const [tracks, setTracks] = useState([]);
   const [playlist, setPlaylist] = useState([]);
 
@@ -39,7 +40,12 @@ function App() {
     <div className="App">
       <SearchBar onValidate={validateHandler} />
       <TrackList tracks={tracks} addHandler={addHandler} />
-      <Playlist playlist={playlist} removeHandler={removeHandler} />
+      <Playlist
+        playlist={playlist}
+        removeHandler={removeHandler}
+        title={title}
+        onTitleChange={setTitle}
+      />
     </div>
   );
 }
